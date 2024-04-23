@@ -58,6 +58,51 @@ SELECT
     o.total_price AS order_total_price,
     o.order_date AS order_order_date
 FROM
-    orders o
-    LEFT JOIN products p ON o.product_id = p.id;
+    products p
+    LEFT JOIN orders o ON p.id = o.product_id;
 
+--left join with where clause, return data based on price is greater than 5000.
+SELECT
+    o.id AS order_id,
+    p.name AS product_name,
+    p.price AS product_price,
+    o.quantity AS order_quantity,
+    o.total_price AS order_total_price,
+    o.order_date AS order_order_date
+FROM
+    products p
+    LEFT JOIN orders o ON p.id = o.product_id
+WHERE
+    p.price > 5000;
+
+--RIGHT JOIN(with where clause): return all data from right table and matched from left table.
+SELECT
+    o.id AS order_id,
+    p.name AS product_name,
+    p.price AS product_price,
+    o.quantity AS order_quantity,
+    o.total_price AS order_total_price,
+    o.order_date AS order_order_date
+FROM
+    products p
+    RIGHT JOIN orders o ON p.id = o.product_id where p.price >5000;
+
+--Full OUTER JOIN : return all data from both table either matched or not.
+SELECT
+    o.id AS order_id,
+    p.name AS product_name,
+    p.price AS product_price,
+    o.quantity AS order_quantity,
+    o.total_price AS order_total_price 
+FROM                                
+    products p
+    FULL OUTER JOIN orders o ON p.id = o.product_id;
+    
+order_id | product_name | product_price | order_quantity | order_total_price 
+----------+--------------+---------------+----------------+-------------------
+        1 | mouse        |        650.00 |              2 |           1300.00
+        2 | headphone    |        800.00 |              1 |            800.00
+        3 | smartwatch   |       5600.00 |              3 |          16800.00
+        4 | laptop       |      45500.00 |              1 |          45500.00
+        5 | speaker      |       3000.00 |              4 |          12000.00
+        6 | bike         |     100000.00 |              1 |         100000.00
